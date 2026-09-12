@@ -22,10 +22,20 @@ function isSecure() {
   return (process.env.NODE_ENV || "development") === "production";
 }
 
+// "Lax" (default) works whenever the frontend and backend share the
+// same site (e.g. localhost:5500 + localhost:3000 in local dev). Set
+// SESSION_COOKIE_SAMESITE=None in the backend's environment only when
+// the frontend is hosted on a different domain (e.g. Vercel) than the
+// backend — see utils/cookies.js.
+function sameSite() {
+  return process.env.SESSION_COOKIE_SAMESITE || "Lax";
+}
+
 function setSessionCookie(res, token) {
   res.setHeader("Set-Cookie", serializeCookie(SESSION_COOKIE, token, {
     maxAgeSeconds: sessions.SESSION_TTL_DAYS * 24 * 60 * 60,
     secure: isSecure(),
+    sameSite: sameSite(),
   }));
 }
 
@@ -86,7 +96,7 @@ async function login(req, res, ctx) {
 
 function logout(req, res, ctx) {
   if (ctx.sessionToken) sessions.destroy(ctx.sessionToken);
-  res.setHeader("Set-Cookie", clearCookie(SESSION_COOKIE, { secure: isSecure() }));
+  res.setHeader("Set-Cookie", clearCookie(SESSION_COOKIE, { secure: isSecure(), sameSite: sameSite() }));
   ctx.sendJson(200, { ok: true });
 }
 
