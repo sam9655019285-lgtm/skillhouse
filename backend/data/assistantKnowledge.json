@@ -1,0 +1,50 @@
+[
+  {
+    "keywords": ["what is python"],
+    "answer": "Python is a beginner-friendly, general-purpose programming language widely used for data analysis, machine learning, web backends, and automation because of its simple syntax and huge ecosystem of libraries."
+  },
+  {
+    "keywords": ["what is sql"],
+    "answer": "SQL (Structured Query Language) is used to store, query, and manage data in relational databases. It's a core skill for data analyst, data scientist, and backend developer roles."
+  },
+  {
+    "keywords": ["what is biotechnology"],
+    "answer": "Biotechnology applies biology and lab techniques to develop products and processes — for example in medicine, agriculture, and molecular biology research. Related skills include molecular biology, lab techniques, bioinformatics, and genetics."
+  },
+  {
+    "keywords": ["what is bioinformatics"],
+    "answer": "Bioinformatics combines biology, computer science, and statistics to analyze biological data, such as DNA/protein sequences. It often uses Python, R, and databases alongside biology knowledge."
+  },
+  {
+    "keywords": ["skill-gap analysis", "skill gap analysis", "what is skill gap"],
+    "answer": "Skill-gap analysis compares the skills you currently have against the skills required for a target job role, so you can see exactly what's missing and prioritize what to learn next."
+  },
+  {
+    "keywords": ["what is an internship", "what is internship"],
+    "answer": "An internship is a short-term, often paid, learning-focused role (usually a few months) where you gain real work experience. A job is typically longer-term or permanent, with broader ongoing responsibilities."
+  },
+  {
+    "keywords": ["difference between an internship and a job", "internship vs job", "internship and a job"],
+    "answer": "An internship is usually short-term, structured for learning, and often tied to a college program or fixed duration (e.g. 3-6 months). A job is typically full-time and ongoing, with more independent responsibility and a full salary rather than a stipend."
+  },
+  {
+    "keywords": ["what is machine learning"],
+    "answer": "Machine learning is a field of AI where models learn patterns from data to make predictions or decisions, instead of being explicitly programmed with rules. Common skills: Python, statistics, and libraries like scikit-learn or TensorFlow."
+  },
+  {
+    "keywords": ["data scientist need", "skills does a data scientist", "become a data scientist"],
+    "answer": "A data scientist typically needs Python or R, SQL, statistics, machine learning fundamentals, and the ability to communicate findings clearly. Tools like Pandas, scikit-learn, and visualization libraries (e.g. Power BI, Matplotlib) help a lot."
+  },
+  {
+    "keywords": ["prepare for an interview", "interview preparation", "interview tips"],
+    "answer": "Research the company and role, review the required skills listed on the opportunity, practice explaining your projects clearly, prepare a few questions to ask, and revisit fundamentals for any skill listed as \"required\" that you're weaker on."
+  },
+  {
+    "keywords": ["improve my skills", "improve skills for this job"],
+    "answer": "Check the opportunity's \"Skills You Need\" list, then look in the \"Learning & Skill Development\" tab — it recommends resources specifically for the skills you're missing."
+  },
+  {
+    "keywords": ["data analyst"],
+    "answer": "Data analyst roles typically require SQL, data analysis, statistics, and communication skills, plus familiarity with a visualization tool (like Power BI or Excel) to turn data into insights."
+  }
+]

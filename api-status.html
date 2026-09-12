@@ -1,0 +1,131 @@
+?<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>API Status � Skillhouse</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/assistant.css">
+</head>
+<body>
+<div class="app-shell">
+  <nav class="sidebar" id="sidebar"></nav>
+  <main class="main" id="main-content">
+    <div class="page-header"><h1>API Status</h1><p>Live-data provider and cache health for Phase 13. No API keys, secrets, or access tokens are ever shown here.</p></div>
+    <div id="status-body"><p class="muted">Loading�</p></div>
+  </main>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/navigation.js"></script>
+<script src="js/api/apiClient.js"></script>
+<script>
+  if (!Auth.requireLogin()) { /* redirected */ }
+  else {
+    const user = Auth.getCurrentUser();
+    Navigation.renderShell(user.role);
+    // No nav tab corresponds to this standalone page � just show the
+    // account card / logout, no tab list is meaningful to highlight.
+    document.querySelectorAll(".nav-link").forEach((b) => b.classList.remove("active"));
+
+    async function load() {
+      const body = document.getElementById("status-body");
+      body.innerHTML = `<p class="muted">Loading�</p>`;
+
+      const result = await ApiClient.getApiStatus();
+      if (!result.ok) {
+        body.innerHTML = `
+          <div class="card">
+            <p>⚠ Could not reach the backend API at <code>${UI.escapeHtml(ApiClient.BASE_URL)}</code>.</p>
+            <p class="muted" style="font-size:.85rem;">${UI.escapeHtml(result.error)}</p>
+            <p class="muted" style="font-size:.85rem;">Make sure the backend is running (<code>cd backend && npm start</code>) and that its CORS_ORIGIN in <code>.env</code> includes this page's origin.</p>
+          </div>`;
+        return;
+      }
+
+      const data = result.data;
+      const statusBadge = (status) => {
+        const kind = status === "Connected" || status.startsWith("Connected") ? "green" : status === "Not Configured" ? "gray" : status === "Not Approved" ? "amber" : "red";
+        return UI.badge(status, kind);
+      };
+
+      const linkedinResult = await ApiClient.getLinkedinStatus();
+      const linkedin = linkedinResult.ok ? linkedinResult.data : null;
+      const linkedinParam = new URLSearchParams(location.search).get("linkedin");
+
+      body.innerHTML = `
+        <div class="card">
+          <div class="card-row"><strong>Demo Mode</strong>${UI.badge(data.demoMode ? "ON (mock data)" : "OFF (live providers)", data.demoMode ? "amber" : "green")}</div>
+        </div>
+        ${linkedinParam === "connected" ? `<div class="card"><p>✅ LinkedIn account connected.</p></div>` : ""}
+        ${linkedinParam === "error" ? `<div class="card"><p>⚠ Could not connect your LinkedIn account. Try again, or check the backend logs.</p></div>` : ""}
+        <div class="card">
+          <div class="card-title">Your LinkedIn Connection</div>
+          <p class="muted" style="font-size:.85rem;">Each user connects their own LinkedIn account. Your access token is stored on the backend only (SQLite), never in this browser.</p>
+          ${!linkedinResult.ok
+            ? `<p>${UI.badge("Status Check Failed", "red")}</p>
+               <p class="muted" style="font-size:.8rem;">${UI.escapeHtml(linkedinResult.error)}</p>`
+            : linkedin.connected
+              ? `<p>${UI.badge("Connected", "green")}</p>
+                 <p class="muted" style="font-size:.8rem;">Connected: ${LiveIndustryTimeAgo(linkedin.connectedAt)}${linkedin.expiresAt ? ` · Expires: ${LiveIndustryTimeAgo(linkedin.expiresAt)}` : ""}</p>
+                 <button class="btn btn-sm" id="linkedin-disconnect-btn">Disconnect LinkedIn</button>`
+              : linkedin.appConfigured
+                ? `<p>${UI.badge("Not Connected", "gray")}</p>
+                   <a class="btn btn-sm btn-primary" href="${UI.escapeHtml(ApiClient.linkedinConnectUrl())}">Connect LinkedIn</a>`
+                : `<p>${UI.badge("App Not Configured", "gray")}</p>
+                   <p class="muted" style="font-size:.8rem;">Set LINKEDIN_CLIENT_ID / LINKEDIN_CLIENT_SECRET in backend/.env first.</p>`}
+        </div>
+        <div class="grid grid-3">
+          <div class="card">
+            <div class="card-title">LinkedIn API</div>
+            <p>${statusBadge(data.providers.linkedin.status)}</p>
+            <p class="muted" style="font-size:.8rem;">Configured: ${data.providers.linkedin.configured ? "Yes" : "No"}</p>
+          </div>
+          <div class="card">
+            <div class="card-title">Job Market API</div>
+            <p>${statusBadge(data.providers.jobMarketApi.status)}</p>
+            <p class="muted" style="font-size:.8rem;">${UI.escapeHtml(data.providers.jobMarketApi.label)}</p>
+          </div>
+          <div class="card">
+            <div class="card-title">Mock / Demo Provider</div>
+            <p>${statusBadge(data.providers.mock.status)}</p>
+            <p class="muted" style="font-size:.8rem;">Always available as the final fallback.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Cache</div>
+          <p>${UI.badge(data.cache.healthy ? "Healthy" : "Unhealthy", data.cache.healthy ? "green" : "red")}</p>
+          ${data.cache.entries.length ? data.cache.entries.map((e) => `
+            <div class="muted" style="font-size:.82rem;">Key: <code>${UI.escapeHtml(e.key)}</code> · Source: ${UI.escapeHtml(e.source)} · Fetched: ${LiveIndustryTimeAgo(e.fetchedAt)} · Expires: ${LiveIndustryTimeAgo(e.expiresAt)}</div>
+          `).join("") : `<p class="muted">No cache entries yet � visit a live-data tab to populate it.</p>`}
+        </div>
+        <button class="btn btn-sm" id="status-refresh-btn">🔄 Refresh Status</button>
+      `;
+      document.getElementById("status-refresh-btn").onclick = load;
+      const disconnectBtn = document.getElementById("linkedin-disconnect-btn");
+      if (disconnectBtn) disconnectBtn.onclick = async () => {
+        disconnectBtn.disabled = true;
+        await ApiClient.disconnectLinkedin();
+        load();
+      };
+    }
+
+    function LiveIndustryTimeAgo(dateStr) {
+      if (!dateStr) return "unknown";
+      const diffMs = Date.now() - new Date(dateStr).getTime();
+      const mins = Math.round(diffMs / 60000);
+      if (mins < 0) return "in the future";
+      if (mins < 1) return "just now";
+      return `${mins}m ago`;
+    }
+
+    load();
+  }
+</script>
+<script src="js/assistant/assistantClient.js"></script>
+<script src="js/assistant/assistantWidget.js"></script>
+</body>
+</html>

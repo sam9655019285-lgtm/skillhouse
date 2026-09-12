@@ -1,0 +1,18 @@
+{
+  "primaryDomain": {
+    "Data Scientist": "Data Science",
+    "Data Analyst": "Data Analytics",
+    "Machine Learning Engineer": "Machine Learning",
+    "AI Engineer": "AI",
+    "Python Developer": "Python Development",
+    "Software Developer": "Software Development"
+  },
+  "relatedDomains": {
+    "Data Scientist": ["Data Science", "Machine Learning", "AI", "Data Analytics"],
+    "Data Analyst": ["Data Analytics", "Data Science"],
+    "Machine Learning Engineer": ["Machine Learning", "AI", "Data Science"],
+    "AI Engineer": ["AI", "Machine Learning", "Data Science"],
+    "Python Developer": ["Python Development", "Software Development"],
+    "Software Developer": ["Software Development", "Python Development", "Cloud"]
+  }
+}

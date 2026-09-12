@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Register — Skillhouse</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/assistant.css">
+</head>
+<body>
+<div class="auth-page">
+  <div class="auth-card">
+    <h1>🎓 Create Your Account</h1>
+    <p class="auth-sub">Join Skillhouse</p>
+    <div id="register-message"></div>
+    <form id="register-form">
+      <label>Full Name</label>
+      <input type="text" id="reg-name" required>
+      <label>Email</label>
+      <input type="email" id="reg-email" required autocomplete="email">
+      <label>Role</label>
+      <select id="reg-role">
+        <option value="Student">Student</option>
+        <option value="Industry">Industry</option>
+        <option value="Academician">Academician</option>
+        <option value="Institution">Institution</option>
+      </select>
+      <label>Password</label>
+      <input type="password" id="reg-password" required autocomplete="new-password">
+      <div class="field-hint">At least 6 characters.</div>
+      <label>Confirm Password</label>
+      <input type="password" id="reg-confirm" required autocomplete="new-password">
+      <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+    </form>
+    <p class="auth-switch">Already have an account? <a href="login.html">Log in</a></p>
+    <div class="demo-accounts">Prototype authentication uses browser-side storage and is not suitable for production.</div>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/api/apiClient.js"></script>
+<script src="js/auth.js"></script>
+<script>
+  if (Auth.isLoggedIn()) window.location.replace(Auth.roleDashboardUrl(Auth.getCurrentUser().role));
+
+  document.getElementById("register-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const name = document.getElementById("reg-name").value;
+    const email = document.getElementById("reg-email").value;
+    const role = document.getElementById("reg-role").value;
+    const password = document.getElementById("reg-password").value;
+    const confirm = document.getElementById("reg-confirm").value;
+    const msgEl = document.getElementById("register-message");
+
+    const result = await Auth.registerUser(name, email, password, confirm, role);
+    if (!result.success) {
+      msgEl.innerHTML = `<div class="auth-error">${result.message}</div>`;
+      return;
+    }
+    msgEl.innerHTML = `<div class="auth-success">${result.message} Redirecting to login…</div>`;
+    setTimeout(() => window.location.href = "login.html", 1200);
+  });
+</script>
+<script src="js/assistant/assistantClient.js"></script>
+<script src="js/assistant/assistantWidget.js"></script>
+</body>
+</html>

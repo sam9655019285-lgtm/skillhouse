@@ -1,0 +1,54 @@
+[
+  {
+    "keywords": ["create profile", "make profile", "set up profile", "edit profile", "update profile"],
+    "answer": "Go to the \"My Profile\" tab in your sidebar. Fill in your details (name, branch, education, target role) and click Save — your profile updates immediately."
+  },
+  {
+    "keywords": ["add skill", "add skills", "update skill", "technical skill", "soft skill"],
+    "answer": "Open the \"My Skills\" tab. You can add technical and soft skills there and set a proficiency level for each. These skills are used to match you with opportunities."
+  },
+  {
+    "keywords": ["find internship", "where internship", "browse opportunit", "find job", "find opportunit"],
+    "answer": "Open the \"Industry Opportunities\" tab to browse and filter all internships and jobs, or just ask me what you're looking for and I'll search for you right here."
+  },
+  {
+    "keywords": ["apply for a job", "apply to a job", "how to apply", "apply for internship", "apply for opportunit"],
+    "answer": "Open any opportunity's details from the \"Industry Opportunities\" tab and click the \"Apply\" button. You can track the status of every application in \"My Applications\"."
+  },
+  {
+    "keywords": ["upload certificat", "add certificat", "certification"],
+    "answer": "Certifications can be added from the \"My Profile\" or \"Portfolio\" tab — look for the certifications section and add the title and issuing organization there."
+  },
+  {
+    "keywords": ["assessment result", "skill assessment", "test result", "quiz result"],
+    "answer": "Your latest skill assessment results are shown in the \"Skill Assessment\" tab, and they also feed into your \"Skill Gap Analysis\"."
+  },
+  {
+    "keywords": ["skill gap"],
+    "answer": "The \"Skill Gap Analysis\" tab compares your current skills against a target job role and shows exactly which skills you're missing, so you know what to learn next."
+  },
+  {
+    "keywords": ["save opportunit", "saved opportunit", "bookmark"],
+    "answer": "Click \"Save Opportunity\" on any listing to bookmark it. You can review everything you've saved in the \"Saved Opportunities\" tab."
+  },
+  {
+    "keywords": ["learning resource", "course recommend", "improve skill", "training material"],
+    "answer": "The \"Learning & Skill Development\" tab (and \"Recommended For You\") lists courses and resources tailored to the skills you're missing."
+  },
+  {
+    "keywords": ["post opportunit", "post a job", "post internship"],
+    "answer": "If you're signed in as an Industry user, use the \"Post New Opportunity\" tab to publish a new internship, job, or project listing."
+  },
+  {
+    "keywords": ["candidate search", "find candidate", "talent discovery"],
+    "answer": "Industry accounts can use \"Candidate Search\" or \"Talent Discovery\" to find students whose skills match a role you're hiring for."
+  },
+  {
+    "keywords": ["connect linkedin", "linkedin"],
+    "answer": "Go to the API status / settings area and use \"Connect LinkedIn\" to link your account — this is optional and only used to enrich live industry data."
+  },
+  {
+    "keywords": ["log out", "logout", "sign out"],
+    "answer": "Click the \"Logout\" button at the bottom of the sidebar."
+  }
+]

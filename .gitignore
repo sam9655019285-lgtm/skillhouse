@@ -1,0 +1,9 @@
+node_modules/
+.env
+*.env
+!.env.example
+backend/data/app.db
+backend/data/app.db-journal
+backend/data/app.db-wal
+backend/data/app.db-shm
+backend/*.log

@@ -1,0 +1,14 @@
+{
+  "name": "academia-industry-portal-backend",
+  "version": "1.0.0",
+  "description": "Phase 13 — minimal, dependency-free Node API layer for real-time industry data integration and server-side auth. Keeps external API credentials and password hashes off the frontend, persists users/sessions/per-user LinkedIn tokens in SQLite, and normalizes job-market data for the existing Phase 1-12 dashboards. Uses only Node's built-in http and node:sqlite modules — no npm install required.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=22.5.0"
+  },
+  "dependencies": {}
+}

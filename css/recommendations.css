@@ -1,0 +1,155 @@
+/*
+ * css/recommendations.css — Department-based dashboard sections
+ * (Recommended Companies/Jobs/Internships/Skills). Reuses the site's
+ * existing theme tokens from style.css.
+ */
+
+.rec-dept-banner {
+  background: var(--primary-light, #eef2ff);
+  color: var(--primary-dark, #4338ca);
+  border-radius: var(--radius, 10px);
+  padding: 10px 14px;
+  margin-bottom: 14px;
+  font-size: .88rem;
+}
+
+.rec-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.rec-card {
+  background: #fff;
+  border: 1px solid var(--gray-200, #e5e7eb);
+  border-radius: var(--radius, 10px);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+  transition: box-shadow .15s ease, transform .15s ease;
+}
+.rec-card:hover {
+  box-shadow: var(--shadow-md, 0 6px 20px rgba(0,0,0,.12));
+  transform: translateY(-2px);
+}
+
+.rec-company-card { padding-top: 18px; }
+
+.rec-logo-placeholder {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: .95rem;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.rec-bookmark-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.05rem;
+  cursor: pointer;
+  opacity: .45;
+  line-height: 1;
+  padding: 2px;
+}
+.rec-bookmark-btn.saved { opacity: 1; }
+
+.rec-dept-relevant {
+  background: #ecfdf5;
+  color: #047857;
+  font-size: .76rem;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 6px;
+  align-self: flex-start;
+}
+
+.rec-card-desc {
+  font-size: .8rem;
+  color: #4b5563;
+  margin: 2px 0;
+  line-height: 1.4;
+}
+
+.rec-card-title { font-weight: 600; font-size: .95rem; }
+.rec-card-sub { font-size: .8rem; color: #6b7280; }
+.rec-card-flags { font-size: .78rem; color: #4b5563; }
+
+.rec-card-skills { display: flex; flex-wrap: wrap; gap: 4px; margin: 2px 0; }
+.rec-skill-chip {
+  background: var(--primary-light, #eef2ff);
+  color: var(--primary-dark, #4338ca);
+  border-radius: 999px;
+  padding: 2px 9px;
+  font-size: .72rem;
+}
+.rec-skill-chip.rec-skill-missing { background: #fef3c7; color: #92400e; }
+
+.rec-match-badge {
+  align-self: flex-start;
+  font-size: .74rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: 999px;
+}
+.rec-match-green { background: #dcfce7; color: #166534; }
+.rec-match-amber { background: #fef3c7; color: #92400e; }
+.rec-match-gray { background: #f3f4f6; color: #4b5563; }
+
+.rec-card .btn { align-self: flex-start; margin-top: 4px; }
+
+.rec-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.rec-filter-bar input, .rec-filter-bar select {
+  flex: 1 1 160px;
+  min-width: 140px;
+}
+
+.rec-modal-box {
+  max-width: 640px;
+  max-height: 85vh;
+  overflow-y: auto;
+  text-align: left;
+}
+.rec-modal-header { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.rec-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: #6b7280;
+}
+.rec-modal-box { position: relative; }
+.rec-modal-opp {
+  border: 1px solid var(--gray-200, #e5e7eb);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-bottom: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.rec-modal-opp .btn { align-self: flex-start; }
+
+@media (max-width: 480px) {
+  .rec-grid { grid-template-columns: 1fr; }
+  .rec-modal-box { max-width: 100%; }
+}

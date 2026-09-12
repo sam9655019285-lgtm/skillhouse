@@ -1,0 +1,71 @@
+/*
+ * resume.css — AI Resume Builder (student editor + Industry read-only
+ * view). "Download PDF" uses the browser's native print-to-PDF (no
+ * external PDF library in this project) — the @media print rule at
+ * the bottom hides everything except .resume-print-area.
+ */
+
+.resume-toolbar {
+  display: flex; flex-wrap: wrap; gap: 16px; padding: 14px;
+  background: var(--gray-50, #f9fafb); border: 1px solid var(--gray-200, #e5e7eb); border-radius: 10px;
+}
+.resume-toolbar-field { display: flex; flex-direction: column; gap: 4px; min-width: 180px; flex: 1; }
+.resume-toolbar-field label { font-size: .76rem; font-weight: 700; color: var(--gray-500); }
+.resume-toolbar-field select, .resume-toolbar-field input {
+  padding: 7px 9px; border: 1px solid var(--gray-200, #e5e7eb); border-radius: 7px; font-size: .85rem;
+}
+
+.resume-editor-grid textarea, .resume-editor-grid input[type="text"] {
+  width: 100%; padding: 8px 10px; border: 1px solid var(--gray-200, #e5e7eb); border-radius: 8px;
+  font-size: .86rem; font-family: inherit; margin-bottom: 10px; resize: vertical;
+}
+.resume-editor-grid label { display: block; font-weight: 600; font-size: .8rem; margin: 4px 0 4px; }
+
+.resume-preview {
+  border: 1px solid var(--gray-200, #e5e7eb); border-radius: 10px; padding: 0;
+  background: #fff; max-height: 720px; overflow-y: auto;
+}
+.resume-doc { padding: 26px 28px; color: #1f2937; font-size: .88rem; line-height: 1.55; }
+.resume-doc-header { text-align: center; border-bottom: 2px solid var(--primary, #4f46e5); padding-bottom: 12px; margin-bottom: 16px; }
+.resume-doc-name { font-size: 1.4rem; font-weight: 800; }
+.resume-doc-role { color: var(--primary, #4f46e5); font-weight: 600; margin-top: 2px; }
+.resume-doc-contact { color: #6b7280; font-size: .8rem; margin-top: 6px; }
+.resume-doc-section { margin-bottom: 16px; }
+.resume-doc-section h4 {
+  font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; color: var(--primary-dark, #4338ca);
+  border-bottom: 1px solid var(--gray-200, #e5e7eb); padding-bottom: 4px; margin-bottom: 8px;
+}
+.resume-doc-item { margin-bottom: 10px; }
+.resume-doc-item-title { font-weight: 700; font-size: .88rem; }
+.resume-doc-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.resume-doc-tag { background: var(--primary-light, #eef2ff); color: var(--primary-dark, #4338ca); padding: 3px 10px; border-radius: 999px; font-size: .78rem; }
+.resume-doc ul { margin: 4px 0 0 18px; padding: 0; }
+
+/* Template variants — same content structure, different visual tone */
+.resume-template-classic .resume-doc-header { border-bottom-color: #111827; text-align: left; }
+.resume-template-classic .resume-doc-role { color: #111827; }
+.resume-template-classic .resume-doc-section h4 { color: #111827; text-transform: none; letter-spacing: 0; font-size: .92rem; }
+.resume-template-compact .resume-doc { font-size: .8rem; line-height: 1.4; padding: 18px 20px; }
+.resume-template-compact .resume-doc-section { margin-bottom: 10px; }
+.resume-template-compact .resume-doc-name { font-size: 1.15rem; }
+
+.resume-view-modal { max-width: 680px; width: 100%; max-height: 90vh; overflow-y: auto; }
+
+@media (max-width: 900px) {
+  .resume-editor-grid { grid-template-columns: 1fr !important; }
+}
+@media (max-width: 480px) {
+  .resume-toolbar { flex-direction: column; }
+  .resume-doc { padding: 18px 16px; }
+}
+
+/* ---- Print / "Download PDF" ---- */
+@media print {
+  body * { visibility: hidden; }
+  .resume-print-area, .resume-print-area * { visibility: visible; }
+  .resume-print-area {
+    position: absolute; top: 0; left: 0; width: 100%;
+    max-height: none; overflow: visible; border: none;
+  }
+  .sidebar, .sidebar-toggle, #toast-container, .notif-bell-btn, .notif-popup, .modal-overlay > *:not(.resume-view-modal) { display: none !important; }
+}

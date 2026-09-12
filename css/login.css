@@ -1,0 +1,246 @@
+/*
+ * login.css — Skillhouse login page. Deliberately separate from
+ * style.css's shared .auth-page/.auth-card (used by register.html and
+ * index.html's loading screen) so this redesign only touches
+ * login.html and register.html keeps its current look untouched.
+ */
+
+.sh-login-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 20px;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(circle at 15% 20%, #2a2f7a 0%, transparent 45%),
+              radial-gradient(circle at 85% 80%, #5b21b6 0%, transparent 50%),
+              linear-gradient(160deg, #0b1030 0%, #14173f 45%, #1e1450 100%);
+  font-family: inherit;
+}
+
+/* ---- decorative background: soft glowing orbs + connection-node motif ---- */
+.sh-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+  opacity: .55;
+  pointer-events: none;
+}
+.sh-orb--1 { width: 340px; height: 340px; top: -90px; left: -90px; background: #4f46e5; }
+.sh-orb--2 { width: 300px; height: 300px; bottom: -100px; right: -60px; background: #7c3aed; }
+.sh-orb--3 { width: 220px; height: 220px; top: 40%; right: 8%; background: #06b6d4; opacity: .3; }
+
+.sh-network {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .5;
+}
+
+/* ---- card ---- */
+.sh-login-card {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 420px;
+  background: rgba(17, 20, 51, 0.72);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 20px;
+  padding: 38px 34px 30px;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255,255,255,.03) inset;
+  color: #e7e9fb;
+}
+
+.sh-brand-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 22px;
+}
+.sh-logo-mark {
+  width: 40px; height: 40px;
+  border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6 55%, #22d3ee);
+  box-shadow: 0 6px 18px -4px rgba(99, 102, 241, 0.65);
+  flex-shrink: 0;
+}
+.sh-logo-mark svg { width: 22px; height: 22px; }
+.sh-brand-name {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: .2px;
+  background: linear-gradient(90deg, #a5b4fc, #e0e7ff 60%, #67e8f9);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.sh-heading {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0 0 4px;
+  color: #f5f6ff;
+}
+.sh-tagline {
+  text-align: center;
+  font-size: .95rem;
+  font-weight: 600;
+  margin: 0 0 8px;
+  background: linear-gradient(90deg, #93c5fd, #c4b5fd);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.sh-support-text {
+  text-align: center;
+  font-size: .82rem;
+  color: #aab0d6;
+  margin: 0 0 26px;
+  line-height: 1.45;
+}
+
+/* ---- form ---- */
+.sh-field { margin-bottom: 16px; }
+.sh-field label {
+  display: block;
+  font-size: .78rem;
+  font-weight: 600;
+  color: #c7cbf0;
+  margin-bottom: 6px;
+}
+.sh-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.sh-input-wrap .sh-input-icon {
+  position: absolute;
+  left: 12px;
+  width: 18px; height: 18px;
+  color: #8b90c9;
+  display: flex;
+  pointer-events: none;
+}
+.sh-input-wrap input {
+  width: 100%;
+  padding: 11px 12px 11px 38px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,.14);
+  background: rgba(255,255,255,.06);
+  color: #f2f3ff;
+  font-size: .92rem;
+  outline: none;
+  transition: border-color .15s ease, background .15s ease;
+}
+.sh-input-wrap input::placeholder { color: #767ba8; }
+.sh-input-wrap input:focus {
+  border-color: #818cf8;
+  background: rgba(255,255,255,.09);
+}
+.sh-input-wrap input[type="password"],
+.sh-input-wrap input.sh-has-toggle { padding-right: 40px; }
+
+.sh-toggle-pass {
+  position: absolute;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #9ba1d6;
+  width: 28px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 6px;
+}
+.sh-toggle-pass:hover { color: #e0e7ff; background: rgba(255,255,255,.08); }
+.sh-toggle-pass svg { width: 18px; height: 18px; }
+
+.sh-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 4px 0 20px;
+  font-size: .8rem;
+}
+.sh-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: #c7cbf0;
+  cursor: pointer;
+  user-select: none;
+}
+.sh-checkbox input { accent-color: #818cf8; width: 15px; height: 15px; }
+.sh-forgot-link { color: #93c5fd; font-weight: 600; }
+.sh-forgot-link:hover { text-decoration: underline; }
+
+.sh-login-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: .95rem;
+  font-weight: 700;
+  color: #fff;
+  cursor: pointer;
+  background: linear-gradient(90deg, #4f46e5, #7c3aed 55%, #2563eb);
+  background-size: 160% 100%;
+  box-shadow: 0 10px 24px -8px rgba(99, 102, 241, 0.7);
+  transition: background-position .25s ease, transform .1s ease;
+}
+.sh-login-btn:hover { background-position: 100% 0; }
+.sh-login-btn:active { transform: translateY(1px); }
+.sh-login-btn:disabled { opacity: .65; cursor: not-allowed; }
+
+.sh-switch {
+  text-align: center;
+  margin-top: 18px;
+  font-size: .85rem;
+  color: #aab0d6;
+}
+.sh-switch a { color: #93c5fd; font-weight: 700; }
+.sh-switch a:hover { text-decoration: underline; }
+
+.sh-auth-error, .sh-auth-success {
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: .83rem;
+  margin-bottom: 14px;
+}
+.sh-auth-error { background: rgba(239, 68, 68, .16); color: #fca5a5; border: 1px solid rgba(239,68,68,.3); }
+.sh-auth-success { background: rgba(34, 197, 94, .16); color: #86efac; border: 1px solid rgba(34,197,94,.3); }
+
+/* ---- demo accounts (collapsible, out of the way) ---- */
+.sh-demo-accounts {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255,255,255,.1);
+  font-size: .76rem;
+  color: #9298c7;
+}
+.sh-demo-accounts summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: #c7cbf0;
+  list-style: none;
+}
+.sh-demo-accounts summary::-webkit-details-marker { display: none; }
+.sh-demo-accounts summary::before { content: "▸ "; }
+.sh-demo-accounts[open] summary::before { content: "▾ "; }
+.sh-demo-accounts .sh-demo-list { margin-top: 8px; line-height: 1.9; }
+.sh-demo-accounts code {
+  background: rgba(255,255,255,.08);
+  color: #d7dafc;
+  padding: 1px 6px;
+  border-radius: 5px;
+}
+
+@media (max-width: 480px) {
+  .sh-login-card { padding: 30px 22px 24px; border-radius: 16px; }
+  .sh-heading { font-size: 1.3rem; }
+}

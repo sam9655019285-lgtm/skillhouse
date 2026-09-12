@@ -1,0 +1,48 @@
+{
+  "Data Scientist": {
+    "Python": { "required_score": 85, "importance": 1.0 },
+    "SQL": { "required_score": 80, "importance": 0.8 },
+    "Statistics": { "required_score": 80, "importance": 0.9 },
+    "Machine Learning": { "required_score": 85, "importance": 1.0 },
+    "Data Analysis": { "required_score": 80, "importance": 0.8 },
+    "Git": { "required_score": 60, "importance": 0.5 }
+  },
+  "Data Analyst": {
+    "SQL": { "required_score": 85, "importance": 1.0 },
+    "Data Analysis": { "required_score": 85, "importance": 1.0 },
+    "Statistics": { "required_score": 70, "importance": 0.7 },
+    "Python": { "required_score": 60, "importance": 0.6 },
+    "Communication": { "required_score": 75, "importance": 0.8 }
+  },
+  "Machine Learning Engineer": {
+    "Python": { "required_score": 90, "importance": 1.0 },
+    "Machine Learning": { "required_score": 90, "importance": 1.0 },
+    "Statistics": { "required_score": 75, "importance": 0.7 },
+    "Data Analysis": { "required_score": 70, "importance": 0.6 },
+    "Git": { "required_score": 70, "importance": 0.6 },
+    "SQL": { "required_score": 60, "importance": 0.5 }
+  },
+  "AI Engineer": {
+    "Python": { "required_score": 90, "importance": 1.0 },
+    "Machine Learning": { "required_score": 85, "importance": 1.0 },
+    "Data Analysis": { "required_score": 65, "importance": 0.5 },
+    "Git": { "required_score": 65, "importance": 0.5 },
+    "Problem Solving": { "required_score": 75, "importance": 0.7 }
+  },
+  "Python Developer": {
+    "Python": { "required_score": 85, "importance": 1.0 },
+    "Git": { "required_score": 70, "importance": 0.7 },
+    "GitHub": { "required_score": 60, "importance": 0.5 },
+    "SQL": { "required_score": 55, "importance": 0.4 },
+    "Problem Solving": { "required_score": 65, "importance": 0.5 }
+  },
+  "Software Developer": {
+    "Python": { "required_score": 70, "importance": 0.8 },
+    "Java": { "required_score": 70, "importance": 0.8 },
+    "C/C++": { "required_score": 60, "importance": 0.6 },
+    "Git": { "required_score": 70, "importance": 0.7 },
+    "GitHub": { "required_score": 60, "importance": 0.5 },
+    "Problem Solving": { "required_score": 75, "importance": 0.7 },
+    "Teamwork": { "required_score": 65, "importance": 0.5 }
+  }
+}

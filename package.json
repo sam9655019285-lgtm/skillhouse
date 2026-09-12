@@ -1,0 +1,19 @@
+{
+  "name": "academia_industry_portal",
+  "version": "1.0.0",
+  "description": "Skillhouse — Academia-Industry Collaboration Portal. Frontend is pure HTML5 + CSS3 + vanilla JavaScript (ES6+) — no build step, no frontend framework. Backend (backend/) is a dependency-free Node.js API using only built-in modules (http, node:sqlite, crypto) — no Express/axios/cors/dotenv are used anywhere in this project. Run `npm run dev` to start both the backend API and a frontend static server together in one command (recommended, especially after a Windows restart); or run `npm start` for the backend only and serve the frontend separately (e.g. VS Code Live Server).",
+  "main": "backend/server.js",
+  "scripts": {
+    "dev": "node start-all.js",
+    "start": "node backend/server.js",
+    "start:api": "npm --prefix backend start",
+    "dev:api": "npm --prefix backend run dev",
+    "serve:frontend": "node serve-frontend.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {}
+}
