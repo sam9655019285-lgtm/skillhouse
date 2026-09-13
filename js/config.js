@@ -18,7 +18,7 @@
 
   // ---- Fill this in once your backend is deployed and reachable ----
   // Example: "https://skillhouse-api.onrender.com"
-  const PRODUCTION_API_BASE_URL = "";
+  const PRODUCTION_API_BASE_URL = "https://skillhouse-cf9w.onrender.com";
 
   if (PRODUCTION_API_BASE_URL) {
     window.API_BASE_URL = PRODUCTION_API_BASE_URL;
